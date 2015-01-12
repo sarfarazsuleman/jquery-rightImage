@@ -20,7 +20,7 @@
       appleStandard : true, //appleStandard = '@2x'. None standard = next size up
       support3x : false, //Convert 3x Images to @3x (iPhone Plus),
       debug : false //debug flag
-    }
+    };
 
     /**
      * Import user settings and append to default
@@ -53,7 +53,7 @@
      * Image Suffix
      * @type {String}
      */
-    var imageSuffix = null
+    var imageSuffix = null;
 
     /**********************************************************************/
     /*************************Start Function Calls*************************/
@@ -100,13 +100,10 @@
       switch (imageSize) {
         case 0:
           return 'xs';
-          break;
         case 1:
           return 'small';
-          break;
         case 2:
           return 'medium';
-          break;
         default:
           return 'large';
       }
@@ -171,7 +168,7 @@
 
       //check for isInt
       function isInt(val) {
-        if (typeof val !== "number" || val !== parseInt(val)) {
+        if (typeof val !== "number" || val !== parseInt(val,10)) {
           return false;
         } else {
           return true;
