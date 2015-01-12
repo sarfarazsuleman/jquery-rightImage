@@ -240,20 +240,30 @@
      * @return {void}
      */
     function summarize(imageSrc) {
-      var data = 'Screen Width: ' + screen.width + '<br />';
-      data += 'Screen Height: ' + screen.height + '<br />';
-      data += 'Max Width: ' + maxWidth + ' (Uses Height if height is larger than width, to support orientation change)<br />';
-      data += 'Perform Retina Check: ' + settings.retinaCheck + '<br />';
-      data += 'Follow Apple Standard (@2x, @3x): ' + settings.appleStandard + '<br />';
-      data += 'Support3x: ' + settings.support3x + '<br />';
-      data += 'is2x: ' + is2x() + '<br />';
-      data += 'is3x: ' + is3x() + '<br />';
-      data += 'Base Image Size: ' + stringifyImageSize(baseImageSize) + '<br />';
-      data += 'True Image Size: ' + stringifyImageSize(trueImageSize) + '<br />';
-      data += 'Image Suffix: '+ imageSuffix + '<br />';
-      data += 'Final Image Source: ' + imageSrc + '<hr />';;
 
-      $("#results").append(data);
+      function getSummary(newLine) {
+        var data = 'Screen Width: ' + screen.width + newLine;
+        data += 'Screen Height: ' + screen.height + newLine;
+        data += 'Max Width: ' + maxWidth + ' (Uses Height if height is larger than width, to support orientation change)' + newLine;
+        data += 'Perform Retina Check: ' + settings.retinaCheck + newLine;
+        data += 'Follow Apple Standard (@2x, @3x): ' + settings.appleStandard + newLine;
+        data += 'Support3x: ' + settings.support3x + newLine;
+        data += 'is2x: ' + is2x() + newLine;
+        data += 'is3x: ' + is3x() + newLine;
+        data += 'Base Image Size: ' + stringifyImageSize(baseImageSize) + newLine;
+        data += 'True Image Size: ' + stringifyImageSize(trueImageSize) + newLine;
+        data += 'Image Suffix: '+ imageSuffix + newLine;
+        data += 'Final Image Source: ' + imageSrc;
+
+        return data;
+      }
+      
+
+      if ($('#rightImageSummary').length) {
+        $("#rightImageSummary").append(getSummary('<br />') + '<hr />');
+      }
+      
+      console.log(getSummary('\n'));
     }
 
     /**********************************************************************/
