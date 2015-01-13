@@ -2,7 +2,7 @@
 jQuery Plugin to serve the right image based on viewport and retina compatibilites.
 
 ## Purpose
-The ideal purpose of this plugin is to be used on a responsive site to serve the largest image that your device will support.
+The purpose of this plugin is to be used on a responsive site to serve the largest image that your device will support. The ideal use of this plugin is when images on all viewports share a common aspect ratio.
 
 For example:
 - If you were viewing you site in full screen on a deskop, you would get the large image version.
