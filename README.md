@@ -42,7 +42,8 @@ The sizes below mimic the default Twitter Bootstrap media queries. Any device sm
   retinaCheck : true, //Serve Retina Images when required
   appleStandard : true, //appleStandard = '@2x'. None standard = next size up
   support3x : false, //Convert 3x Images to @3x (iPhone Plus),
-  debug : false //debug flag
+  debug : false, //debug flag
+  debugNodeSelector : '#rightImageSummary' // element where debug info will be appended to
 }
 ```
 
@@ -74,7 +75,11 @@ This flag determines if the plugin should serve 3x images where necessary (mainl
 
 **debug**
 
-When true, this will print debug to the console and to any element containing the `rightImageSummary` id.
+When true, this will print debug to the console and to any element evaluated by `debugNodeSelector`.
+
+**debugNodeSelector**
+
+Selector for element to write log to (i.e. `#rightImageSummary`).
 
 
 **WARNING: rightImage plugin does not use Global Configurations. All configuration items must be passed as a JSON object on every call to `rightImage()`**
