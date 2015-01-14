@@ -35,7 +35,7 @@
      * withd and height to determine the highest possible pixel value.
      * @type {Integer}
      */
-    var maxWidth = (screen.width > screen.height)?screen.width:screen.height;
+    var maxWidth = Math.max(screen.width, screen.height);
 
     /**
      * Base Image Size
