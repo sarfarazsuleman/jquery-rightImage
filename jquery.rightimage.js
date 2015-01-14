@@ -1,7 +1,9 @@
 (function ( $ ) {
   'use strict';
+  /* global jQuery */
+  /* global console */
 
-  $.fn.rightImage = function ( options ) {
+  $.fn.rightImage = function rightImage( options ) {
 
     /**********************************************************************/
     /*********************Start Variable Declarations**********************/
@@ -19,7 +21,8 @@
       retinaCheck : true, //Serve Retina Images when required
       appleStandard : true, //appleStandard = '@2x'. None standard = next size up
       support3x : false, //Convert 3x Images to @3x (iPhone Plus),
-      debug : false //debug flag
+      debug : false, //debug flag,
+      debugNodeSelector : '#rightImageSummary' // element where debug info will be appended to
     };
 
     /**
@@ -35,7 +38,7 @@
      * withd and height to determine the highest possible pixel value.
      * @type {Integer}
      */
-    var maxWidth = (screen.width > screen.height)?screen.width:screen.height;
+    var maxWidth = Math.max(screen.width, screen.height);
 
     /**
      * Base Image Size
@@ -148,13 +151,13 @@
       }
 
       //validate flags type
-      if (typeof settings.retinaCheck !== "boolean") {
+      if (typeof settings.retinaCheck !== 'boolean') {
         throw 'Value of retinaCheck needs to be a boolean.';
       }
-      if (typeof settings.appleStandard !== "boolean") {
+      if (typeof settings.appleStandard !== 'boolean') {
         throw 'Value of appleStandard needs to be a boolean.';
       }
-      if (typeof settings.support3x !== "boolean") {
+      if (typeof settings.support3x !== 'boolean') {
         throw 'Value of support3x needs to be a boolean.';
       }
 
@@ -168,7 +171,7 @@
 
       //check for isInt
       function isInt(val) {
-        if (typeof val !== "number" || val !== parseInt(val,10)) {
+        if (typeof val !== 'number' || val !== parseInt(val,10)) {
           return false;
         } else {
           return true;
@@ -185,7 +188,7 @@
     function is2x() {
       if (window.devicePixelRatio > 1 || 
           (window.matchMedia && 
-            window.matchMedia("(-webkit-min-device-pixel-ratio: 1.1),(-moz-min-device-pixel-ratio: 1.1),(min-device-pixel-ratio: 1.1)").matches)) {
+            window.matchMedia('(-webkit-min-device-pixel-ratio: 1.1),(-moz-min-device-pixel-ratio: 1.1),(min-device-pixel-ratio: 1.1)').matches)) {
         return true;
       } else {
         return false;
@@ -201,7 +204,7 @@
     function is3x() {
       if (window.devicePixelRatio > 2 || 
           (window.matchMedia && 
-            window.matchMedia("(-webkit-min-device-pixel-ratio: 2.1),(-moz-min-device-pixel-ratio: 2.1),(min-device-pixel-ratio: 2.1)").matches)) {
+            window.matchMedia('(-webkit-min-device-pixel-ratio: 2.1),(-moz-min-device-pixel-ratio: 2.1),(min-device-pixel-ratio: 2.1)').matches)) {
         return true;
       } else {
         return false;
@@ -256,11 +259,14 @@
       }
       
 
-      if ($('#rightImageSummary').length) {
-        $("#rightImageSummary").append(getSummary('<br />') + '<hr />');
+      if ($(options.debugNodeSelector).length) {
+        $(options.debugNodeSelector).append(getSummary('<br />') + '<hr />');
       }
-      
-      console.log(getSummary('\n'));
+
+      // Preventing crappy browsers to crap up :)
+      if (console && console.log) {
+        console.log(getSummary('\n'));
+      }
     }
 
     /**********************************************************************/
